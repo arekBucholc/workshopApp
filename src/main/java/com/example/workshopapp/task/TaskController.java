@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/tasks")
@@ -13,6 +14,12 @@ public class TaskController {
 
     public TaskController(TaskService taskService) {
         this.taskService = taskService;
+    }
+
+    @GetMapping
+    @ResponseBody
+    List<Task> getAllTasks(){
+        return taskService.findAllTasks().stream().toList();
     }
 
     @GetMapping("/{id}")

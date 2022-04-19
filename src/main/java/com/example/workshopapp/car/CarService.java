@@ -2,6 +2,7 @@ package com.example.workshopapp.car;
 
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +19,12 @@ public class CarService {
         this.carTaskDtoMapper = carTaskDtoMapper;
     }
 
+
+    List<Car> findAllCars(){
+        List<Car> cars = new ArrayList<>();
+        carRepository.findAll().forEach(cars::add);
+        return cars;
+    }
 
 
 

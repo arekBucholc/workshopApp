@@ -3,6 +3,8 @@ package com.example.workshopapp.task;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -13,6 +15,12 @@ public class TaskService {
    public TaskService( TaskRepository taskRepository,  TaskDtoMapper taskDtoMapper) {
         this.taskRepository = taskRepository;
         this.taskDtoMapper = taskDtoMapper;
+    }
+
+    List<Task> findAllTasks(){
+       List<Task> tasks = new ArrayList<>();
+       taskRepository.findAll().forEach(tasks::add);
+       return tasks;
     }
 
     Optional<TaskDto> getTaskById(Long id){

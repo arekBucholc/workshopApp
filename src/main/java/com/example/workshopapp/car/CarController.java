@@ -6,6 +6,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/cars")
@@ -16,6 +17,11 @@ public class CarController {
         this.carService = carService;
     }
 
+    @GetMapping
+    @ResponseBody
+    List<Car> getAllCars(){
+       return carService.findAllCars().stream().toList();
+    }
 
 
     @GetMapping("/{id}")
