@@ -9,7 +9,7 @@ This application is under current development with intention to add a graphic UI
 * Spring Boot 2.6.6
 * Java 17
 * Hibernate
-* CRUD operations
+* CRUD operations 
  
 
 
