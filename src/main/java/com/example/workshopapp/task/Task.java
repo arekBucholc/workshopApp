@@ -4,6 +4,8 @@ import com.example.workshopapp.car.Car;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Entity
@@ -11,11 +13,12 @@ public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(max = 200)
     private String description;
     @JsonFormat(pattern = "yyyy-MM-dd",shape = JsonFormat.Shape.STRING)
+    @Future
     private Date startDate;
     private Double cost;
-
     @ManyToOne(optional = false)
     @JoinColumn(name = "car_id")
     private Car car;

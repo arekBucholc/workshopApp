@@ -3,6 +3,8 @@ package com.example.workshopapp.car;
 import com.example.workshopapp.task.Task;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,11 +13,15 @@ public class Car {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Size(min = 2)
     private String make;
+    @Size(min = 2)
     private String model;
+    @Min(1908)
     private int year;
     private String ownerFirstName;
     private String ownerLastName;
+    @Size(min = 11, max = 11)
     private String ownerContactNumber;
 
     @OneToMany(mappedBy = "car",cascade = CascadeType.REMOVE)
