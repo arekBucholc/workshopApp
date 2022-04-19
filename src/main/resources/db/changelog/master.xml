@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="0001" author="arekBucholc">
+        <createTable tableName="car">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="make" type="VARCHAR(100)"/>
+            <column name="model" type="VARCHAR(100)"/>
+            <column name="year" type="INTEGER"/>
+            <column name="owner_first_name" type="VARCHAR(100)"/>
+            <column name="owner_last_name" type="VARCHAR(100)"/>
+            <column name="owner_contact_number" type="VARCHAR(12)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="0002" author="arekBucholc">
+        <createTable tableName="task">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="description" type="VARCHAR(500)"/>
+            <column name="start_date" type="DATETIME"/>
+            <column name="cost" type="DOUBLE"/>
+            <column name="car_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="task" baseColumnNames="car_id" constraintName="fk_task_car_id"
+                                 referencedTableName="car"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+    <include file="../testdata/testdata.sql" relativeToChangelogFile="true"/>
+</databaseChangeLog>
